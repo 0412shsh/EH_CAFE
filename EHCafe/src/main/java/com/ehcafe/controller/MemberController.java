@@ -95,6 +95,8 @@ public class MemberController {
 		if(loginVO !=null) {
 			//DB에 아이디, 비밀번호 정보 존재
 			session.setAttribute("loginVO", loginVO);
+			session.setAttribute("user_id", vo.getUser_id());
+			session.setAttribute("user_name", vo.getUser_name());
 			model.addAttribute("loginVO", loginVO);
 //			service.loginSucc(response);
 			
