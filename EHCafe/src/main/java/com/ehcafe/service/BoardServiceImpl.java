@@ -41,6 +41,15 @@ public class BoardServiceImpl implements BoardService{
 		out.println("</script>");
 		out.close();
 	}
+
+	
+	//글 보기
+	@Override
+	public BoardVO getBoard(Integer board_num) throws Exception {
+		return dao.getBoard(board_num);
+	}
+	
+	
 	
 	
 

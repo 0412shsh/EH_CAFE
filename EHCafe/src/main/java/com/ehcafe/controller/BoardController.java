@@ -7,8 +7,10 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ehcafe.controller.BoardController;
 import com.ehcafe.domain.BoardVO;
@@ -46,6 +48,20 @@ public class BoardController {
 		service.insertSucc(response);
 		
 		return "/member/login";
+	}
+	
+	// ------------------------------------------------------------
+	
+	// 글내용 
+	@RequestMapping(value="/boardRead", method=RequestMethod.GET)
+	public void boardReadGET(@RequestParam("board_num") int board_num, Model model)  throws Exception{
+		log.info("C: 글내용  - boardReadGET() 호출 ");
+		log.info(board_num + " --------------bno");
+		
+		
+		model.addAttribute("vo", service.getBoard(board_num));
+		log.info("board 정보들 : "+service.getBoard(board_num));
+		
 	}
 	
 
