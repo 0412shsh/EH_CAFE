@@ -7,9 +7,12 @@ public class BoardVO {
 	private int board_num;
 	private String category;
 	private String user_id;
+	private String user_name;
 	private String title;
 	private String content;
 	private Date write_date;
+	
+	
 	public int getBoard_num() {
 		return board_num;
 	}
@@ -27,6 +30,12 @@ public class BoardVO {
 	}
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
+	}
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 	public String getTitle() {
 		return title;
@@ -48,9 +57,10 @@ public class BoardVO {
 	}
 	@Override
 	public String toString() {
-		return "BoardVO [board_num=" + board_num + ", category=" + category + ", user_id=" + user_id + ", title="
-				+ title + ", content=" + content + ", write_date=" + write_date + "]";
+		return "BoardVO [board_num=" + board_num + ", category=" + category + ", user_id=" + user_id + ", user_name="
+				+ user_name + ", title=" + title + ", content=" + content + ", write_date=" + write_date + "]";
 	}
+	
 	
 	
 	

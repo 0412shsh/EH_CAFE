@@ -24,7 +24,8 @@
 <!-- 작성자명 -->
 작성자
 <input type="text" value="${loginVO.user_name}" readonly="readonly" id="user_name">
-<input type="hidden" name="user_id" value="${loginVO.user_id}">                        
+<input type="hidden" name="user_id" value="${loginVO.user_id}"> 
+<input type="hidden" name="user_name" value="${loginVO.user_name}">                 
 
 
 <!-- 제목 -->

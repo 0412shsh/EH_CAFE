@@ -5,9 +5,16 @@
   
 <mapper namespace="com.ehcafe.mappers.BoardMapper">
 	<insert id="boardWrite">
-		insert into eh_board(category,user_id,title,content) 
-		values(#{category},#{user_id},#{title},#{content})
+		insert into eh_board(category,user_id,user_name,title,content) 
+		values(#{category},#{user_id},#{user_name},#{title},#{content})
 	</insert>
 
+	
+	<select id="getBoard" resultType="com.ehcafe.domain.BoardVO">
+		select b.board_num, b.category, b.user_id, b.user_name, b.title, b.content, b.write_date
+		from eh_board b join eh_member m
+		on b.user_id = m.user_id
+		where b.board_num = #{board_num};
+	</select>
 
 </mapper>
