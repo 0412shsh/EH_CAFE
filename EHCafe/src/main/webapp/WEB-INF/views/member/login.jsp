@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- 헤더 주석 풀기 -->
-<%-- <%@ include file="../include/header.jsp" %>     --%>
+<jsp:include page="../include/header.jsp" />
 
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"></script>

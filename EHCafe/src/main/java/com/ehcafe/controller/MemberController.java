@@ -114,4 +114,18 @@ public class MemberController {
 	
 	// ▲▲▲▲▲▲▲▲ 11/26 로그인 끝 ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 	
+	
+	// ▼▼▼▼▼▼▼▼ 11/29 로그아웃 시작 ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logoutGET(HttpSession session) throws Exception{
+		session.invalidate();
+		log.info("C : 세션 초기화 완료 - 로그아웃");
+		return "redirect:/";
+	}
+	// ▲▲▲▲▲▲▲▲ 11/29 로그아웃 끝 ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+	
+	
+	
+	
+	
 }
