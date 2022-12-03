@@ -73,6 +73,15 @@ public class MemberDAOImpl implements MemberDAO {
 	public int updatePw(MemberVO vo) throws Exception {
 		return sqlSession.update(NAMESPACE+".updatePw", vo);
 	}
+
+
+	// 회원 탈퇴
+	@Override
+	public void memberDelete(MemberVO vo) throws Exception {
+		log.info("D : memberDelete(vo)실행 ");
+		sqlSession.delete(NAMESPACE+".deleteBoardAll", vo);
+		sqlSession.delete(NAMESPACE+".delete", vo);
+	}
 	
 	
 

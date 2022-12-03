@@ -37,6 +37,11 @@ public interface MemberService {
 	//회원정보 조회
 	public MemberVO readMember(String user_id);
 	
+	//회원 탈퇴
+	public void delete(MemberVO vo) throws Exception;
+	
+	//탈퇴 완료 알럿
+	public void deleteSucc(HttpServletResponse response) throws Exception;
 	
 	
 }

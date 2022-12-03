@@ -214,5 +214,27 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+
+	//회원 탈퇴
+	@Override
+	public void delete(MemberVO vo) throws Exception {
+		dao.memberDelete(vo);
+	}
+
+	
+	
+	//로그인 실패 알럿
+		@Override
+		public void deleteSucc(HttpServletResponse response) throws Exception {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out=response.getWriter();
+			out.println("<script>");
+			out.println("alert('탈퇴되었습니다. 다음에 또 찾아주세요 🎂 ');");
+			out.println("location.href='/'");
+			out.println("</script>");
+			out.close();		
+		}
+	
+
 	
 }

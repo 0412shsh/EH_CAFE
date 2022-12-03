@@ -36,10 +36,28 @@
 		where user_id=#{user_id}
 	</select>
 	
-<!-- 	비밀번호 변경  -->
+	<!-- 	비밀번호 변경  -->
 	<update id="updatePw">
 		update eh_member set user_pw = #{user_pw}
 		where user_id=#{user_id}
 	</update>
+	
+<!-- 	게시글 전체 삭제  -->
+	<delete id="deleteBoardAll">
+		delete from eh_board
+		where user_id = #{user_id}
+	</delete>
+	
+	
+	<!-- 	회원탈퇴 -->
+	<delete id="delete">
+		delete from eh_member
+		where user_id=#{user_id} and user_pw = #{user_pw}
+	</delete>
+	
+	
+
+	
+	
 	
 </mapper>

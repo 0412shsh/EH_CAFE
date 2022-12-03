@@ -21,4 +21,7 @@ public interface MemberDAO {
 	
 	//비밀번호 변경
 	public int updatePw(MemberVO vo) throws Exception;
+	
+	//회원 탈퇴
+	public void memberDelete(MemberVO vo) throws Exception;
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ehcafe.controller.MemberController;
 import com.ehcafe.domain.MemberVO;
@@ -145,6 +146,55 @@ public class MemberController {
 	}
 	
 	// ▲▲▲▲▲▲▲▲ 12/2 비밀번호 찾기 로그아웃 끝 ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+	
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public void deleteGET() throws Exception {
+		log.info("deleteGET() 호출");
+		
+	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.POST)
+	public String deletePOST(MemberVO vo, HttpSession session, RedirectAttributes rttr, HttpServletResponse response) throws Exception {
+		log.info("deletePOST() 호출");
+		log.info("C : vo 안에 들어 있는 것은? (스프링 자동 매치, form으로 부터 입력 받은거) "+vo); 
+		
+		//세션에 있는 member를 가져와 member변수에 넣어준다. 
+		MemberVO member = (MemberVO)session.getAttribute("loginVO");
+		log.info("세션에서 가져와 담긴 것은? "+member );
+		
+		//세션에 있는 비밀번호
+		String sessionPw = member.getUser_pw();
+		log.info("세션에 담긴 비밀번호는? "+sessionPw);
+		
+		//사용자가 입력해 --> vo로 들어오는 비밀번호 
+		String voPw = vo.getUser_pw();
+		log.info("사용자가 입력한 비밀번호는? "+voPw);
+		
+		
+		//비밀번호가 불일치시 msg에 false를 담아 delete 뷰로 보내기
+		if(!(sessionPw.equals(voPw))) {
+			rttr.addFlashAttribute("msg",false);
+			return "redirect:/member/delete";
+		}
+		
+		service.deleteSucc(response);
+		service.delete(vo);
+		session.invalidate();
+		
+		
+		
+		
+		
+		
+		
+		return "redirect:/";
+		
+		
+		
+		
+		
+	}
+	
 	
 	
 	
