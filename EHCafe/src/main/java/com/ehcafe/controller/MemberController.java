@@ -1,6 +1,8 @@
 package com.ehcafe.controller;
 
 
+import java.io.PrintWriter;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -124,6 +127,24 @@ public class MemberController {
 	}
 	// ▲▲▲▲▲▲▲▲ 11/29 로그아웃 끝 ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 	
+	
+	// ▼▼▼▼▼▼▼▼ 12/2 비밀번호 찾기 시작 ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+	@RequestMapping(value="/findpw", method=RequestMethod.GET)
+	public void findPwGet() throws Exception {
+		log.info("C :findPwGet() 호출 ");
+		
+		
+	}
+	@RequestMapping(value="/findpw", method=RequestMethod.POST)
+	public void findPwPost(@ModelAttribute MemberVO member, HttpServletResponse response) throws Exception {
+		log.info("C :findPwPOST() 호출 ");
+		log.info("@@@@@@@@@@@@@"+member);
+		service.findPw(response, member);
+		
+		
+	}
+	
+	// ▲▲▲▲▲▲▲▲ 12/2 비밀번호 찾기 로그아웃 끝 ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 	
 	
 	

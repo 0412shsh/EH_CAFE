@@ -61,6 +61,23 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	
+	//회원정보조회
+	@Override
+	public MemberVO readMember(String user_id) throws Exception {
+		MemberVO vo = sqlSession.selectOne(NAMESPACE+".readMember", user_id);
+		return vo;
+	}
+
+	//비밀번호 변경
+	@Override
+	public int updatePw(MemberVO vo) throws Exception {
+		return sqlSession.update(NAMESPACE+".updatePw", vo);
+	}
+	
+	
+
+	
+	
 	
 	
 	

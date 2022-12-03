@@ -28,4 +28,15 @@ public interface MemberService {
 	//휴대폰 중복 체크 
 	public int phoneCheck(String user_phone) throws Exception;
 	
+	//이메일 발송
+	public void sendEmail(MemberVO vo, String div) throws Exception;
+	
+	//비밀번호 찾기 
+	public void findPw(HttpServletResponse response, MemberVO vo) throws Exception;
+	
+	//회원정보 조회
+	public MemberVO readMember(String user_id);
+	
+	
+	
 }

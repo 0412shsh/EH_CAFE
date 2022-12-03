@@ -6,12 +6,12 @@
 <!-- 헤더 -->
 <jsp:include page="../include/header.jsp" />
 
-<h1 style="background-color:#E4FFF5">🎂insertBoard - 게시글 내용보기 🎂</h1>
+<h1 style="background-color:#E4FFF5">🎂boardRead - 게시글 내용보기 🎂</h1>
 
 <!-- 게시글 헤더  -->
-	카테고리 : ${vo.category }
-	제목 : ${vo.title } 
-	작성자 : ${vo.user_name }
+	카테고리 : ${vo.category }<br>
+	제목 : ${vo.title } <br>
+	작성자 : ${vo.user_name }<br>
 	작성시간 : 
 	<fmt:formatDate pattern="yy-MM-dd HH:mm" value="${vo.write_date }" />
 <!-- 게시글 헤더  -->
@@ -21,8 +21,8 @@
 <!-- 게시글 본문 -->
 
 <!-- 게시글 버튼 -->
-<button type="button" onclick="location.href='/board/listAll'">목록</button>
-<button type="button" onclick="location.href='/board/update'">수정</button>
-<button type="button" onclick="location.href='/board/delete'">삭제</button>
+<button type="button" onclick="location.href='/board/listAll2'">목록</button>
+<button type="button" onclick="location.href='/board/modify?board_num='+'${vo.board_num}'">수정</button>
+<button type="button" onclick="location.href='/board/delete?board_num='+'${vo.board_num}'">삭제</button>
 <!-- 게시글 버튼 -->
 

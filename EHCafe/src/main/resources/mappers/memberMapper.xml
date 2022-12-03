@@ -6,8 +6,8 @@
 <mapper namespace="com.ehcafe.mappers.MemberMapper">
 	<!-- 회원가입 -->	
 	<insert id="insertMember">
-		 insert into eh_member(user_id,user_pw,user_name,user_phone)
-		 values (#{user_id},#{user_pw},#{user_name},#{user_phone})
+		 insert into eh_member(user_id,user_pw,user_email,user_name,user_phone)
+		 values (#{user_id},#{user_pw},#{user_email},#{user_name},#{user_phone})
 	</insert>
 	
 	<!-- 로그인 -->
@@ -28,5 +28,18 @@
 		select count(*) from eh_member
 		where user_phone =#{user_phone}
 	</select>
+	
+	<!-- 회원정보 조회 -->
+	<select id="readMember" resultType="com.ehcafe.domain.MemberVO">
+		select *
+		from eh_member
+		where user_id=#{user_id}
+	</select>
+	
+<!-- 	비밀번호 변경  -->
+	<update id="updatePw">
+		update eh_member set user_pw = #{user_pw}
+		where user_id=#{user_id}
+	</update>
 	
 </mapper>

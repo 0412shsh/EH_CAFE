@@ -33,6 +33,11 @@
 				return false;
 			}
 			
+			if($('#user_email').val() == ""){
+				alert("이메일을 입력하세요.");
+				return false;
+			}
+			
 			if($('#user_phone').val() == ""){
 				alert("전화번호를 입력하세요.");
 				return false;
@@ -103,6 +108,7 @@
 	아이디 : <input type="text" name="user_id" id="user_id" placeholder="아이디를 입력하세요.">
 	<div><font id="id_feedback" size="2"></font></div>
 	비밀번호 : <input type="password" name="user_pw" id="user_pw" placeholder="비밀번호를 입력하세요."><br>
+	이메일 : <input type="email" name="user_email" id="user_email" placeholder="이메일을 입력하세요.">
 	이름 : <input type="text" name="user_name" id="user_name" placeholder="이름을 입력하세요."><br>
 	전화번호 : <input type="text" name="user_phone" id="user_phone" placeholder="(-)제외 후 숫자만 입력하세요."><br>
 	<div><font id="phone_feedback" size="2"></font></div>

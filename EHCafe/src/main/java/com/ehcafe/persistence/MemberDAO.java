@@ -15,4 +15,10 @@ public interface MemberDAO {
 	
 	//휴대폰 중복 체크 
 	public int phoneCheck(String user_phone) throws Exception;
+	
+	//회원정보조회
+	public MemberVO readMember(String user_id) throws Exception;
+	
+	//비밀번호 변경
+	public int updatePw(MemberVO vo) throws Exception;
 }
