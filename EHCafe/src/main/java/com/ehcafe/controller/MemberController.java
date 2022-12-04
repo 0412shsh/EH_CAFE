@@ -147,6 +147,12 @@ public class MemberController {
 	
 	// ▲▲▲▲▲▲▲▲ 12/2 비밀번호 찾기 로그아웃 끝 ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 	
+	
+	
+	// 12/3 회원탈퇴 & 회원정보 수정 시작 ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+	
+	
+	
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
 	public void deleteGET() throws Exception {
 		log.info("deleteGET() 호출");
@@ -183,19 +189,28 @@ public class MemberController {
 		
 		
 		
-		
-		
-		
-		
 		return "redirect:/";
 		
 		
-		
-		
-		
+	}
+	// 회원정보 수정 - GET
+	@RequestMapping(value="/update", method = RequestMethod.GET)
+	public void updateMemberGET() throws Exception {
+		log.info(" updateMemberGET() 호출");
+	}
+	
+	// 회원정보 수정 - POST
+	@RequestMapping(value="/update", method = RequestMethod.POST)
+	public void updateMemberPOST(MemberVO vo, HttpServletResponse response, HttpSession session ) throws Exception {
+		log.info(" updateMemberPOST() 호출");
+		service.updateSucc(response);
+		service.memberUpdate(vo);
+		session.invalidate();
 	}
 	
 	
+	
+	// 12/3 회원탈퇴 & 회원정보 수정 끝 ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 	
 	
 	

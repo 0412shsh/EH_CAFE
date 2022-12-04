@@ -94,7 +94,33 @@
 				 
 		});
 		
+		
+	
+		
 	}); //document.ready
+	
+	
+	//비밀번호 재확인
+	$(function(){
+	    $('#user_pw').keyup(function(){
+	      $('#chkNotice').html('');
+	    });
+	
+	
+	$('#user_pw2').keyup(function(){
+		if($('#user_pw').val() != $('#user_pw2').val()){
+			 $('#chkNotice').html('비밀번호 일치하지 않음<br><br>');
+	         $('#chkNotice').attr('color', '#f82a2aa3');
+		} else {
+			$('#chkNotice').html('비밀번호 일치함<br><br>');
+	        $('#chkNotice').attr('color', '#199894b3');
+		}
+		
+		
+		});
+	});
+	
+	
 </script>
 
 
@@ -108,6 +134,8 @@
 	아이디 : <input type="text" name="user_id" id="user_id" placeholder="아이디를 입력하세요.">
 	<div><font id="id_feedback" size="2"></font></div>
 	비밀번호 : <input type="password" name="user_pw" id="user_pw" placeholder="비밀번호를 입력하세요."><br>
+	비밀번호 재확인 : <input type="password" id="user_pw2" placeholder="비밀번호를 입력하세요."><br>
+	<font id="chkNotice" size="2"></font>
 	이메일 : <input type="email" name="user_email" id="user_email" placeholder="이메일을 입력하세요.">
 	이름 : <input type="text" name="user_name" id="user_name" placeholder="이름을 입력하세요."><br>
 	전화번호 : <input type="text" name="user_phone" id="user_phone" placeholder="(-)제외 후 숫자만 입력하세요."><br>
