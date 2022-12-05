@@ -18,8 +18,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ehcafe.controller.BoardController;
 import com.ehcafe.domain.BoardVO;
+import com.ehcafe.domain.CommentVO;
 import com.ehcafe.domain.Criteria;
 import com.ehcafe.service.BoardService;
+import com.ehcafe.service.CommentService;
 import com.ehcafe.domain.PageMaker;
 
 @Controller
@@ -30,6 +32,9 @@ public class BoardController {
 	
 	@Inject
 	private BoardService service;
+	
+	@Inject
+	private CommentService cService;
 	
 	
 	// ------------------------------------------------------------
@@ -65,6 +70,10 @@ public class BoardController {
 		log.info(board_num + " --------------bno");
 		model.addAttribute("vo", service.getBoard(board_num));
 		log.info("board 정보들 : "+service.getBoard(board_num));
+		
+		// 댓글 12/05 추가 
+		List<CommentVO> commentList = cService.readComment(board_num);
+		model.addAttribute("commentList",commentList);
 		
 	}
 	
@@ -143,6 +152,8 @@ public class BoardController {
 	// http://localhost:8088/board/listPage
 	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
 	public void listPageGET(Criteria cri, Model model) throws Exception{
+		
+		
 		model.addAttribute("boardList", service.listCri(cri));
 
 		PageMaker pm = new PageMaker();
@@ -151,11 +162,46 @@ public class BoardController {
 
 		// 뷰페이지로 전달 
 		model.addAttribute("pm", pm);
+		
+	
+		
 	}
 	
+	//글목록보기(PageMaker객체 사용) -- 관리자 전용 
+	@RequestMapping(value = "/listPage2", method = RequestMethod.GET)
+	public void listPage2GET(Criteria cri, Model model) throws Exception{
+		model.addAttribute("boardList", service.listCri(cri));
+
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(service.pageCount()); //DB의 전체ROW수 입력
+
+		// 뷰페이지로 전달 
+		model.addAttribute("pm", pm);
+		
+			}
 	
-	
+		
 	
 	// 12/04 페이징처리 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+			
+			
+	//12/05 댓글 작성 ###########################################################
+	
+	
+	//댓글 작성 
+	@RequestMapping(value="/insertComment", method=RequestMethod.POST)
+	public String insertComment(CommentVO vo, Criteria cri, RedirectAttributes rttr) throws Exception {
+		log.info("C : insertComment()  실행 ");
+		log.info("CommentVO 안에 들어 있는것? "+ vo);
+		cService.insertComment(vo);
+		
+		rttr.addAttribute("board_num",vo.getBoard_num());
+		
+		
+		
+		return "redirect:/board/boardRead";
+	}
+	//12/05 댓글 작성 ###########################################################
 	
 }

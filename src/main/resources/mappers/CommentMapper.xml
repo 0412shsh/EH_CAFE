@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.ehcafe.mappers.CommentMapper">
+
+	<select id="readComment" resultType="com.ehcafe.domain.CommentVO">
+		select reply_num, comment, user_id, reply_date
+		from eh_comment
+		where board_num = #{board_num}
+	</select>
+	
+	<insert id="insertComment">
+		insert into eh_comment(board_num,user_id,comment)
+		values(#{board_num},#{user_id},#{comment})
+	</insert>
+	
+</mapper>
