@@ -26,6 +26,13 @@ public class CommentServiceImpl implements CommentService{
 	public void insertComment(CommentVO vo) throws Exception {
 		dao.insertComment(vo);
 	}
+
+	
+	// 댓글 수정
+	@Override
+	public Integer commentUpdate(CommentVO vo) throws Exception {
+		return dao.commentUpdate(vo);
+	}
 	
 	
 

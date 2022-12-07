@@ -12,5 +12,6 @@ public interface CommentService {
 	//댓글 작성
 	public void insertComment(CommentVO vo) throws Exception;
 	
-	
+	//댓글 수정
+	public Integer commentUpdate(CommentVO vo) throws Exception;
 }

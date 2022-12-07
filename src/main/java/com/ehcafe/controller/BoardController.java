@@ -1,7 +1,8 @@
 package com.ehcafe.controller;
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -74,6 +76,10 @@ public class BoardController {
 		// 댓글 12/05 추가 
 		List<CommentVO> commentList = cService.readComment(board_num);
 		model.addAttribute("commentList",commentList);
+		model.addAttribute("commentVO", cService.readComment(board_num));
+		
+		log.info("commentVO========="+cService.readComment(board_num));
+		
 		
 	}
 	
@@ -191,7 +197,7 @@ public class BoardController {
 	
 	//댓글 작성 
 	@RequestMapping(value="/insertComment", method=RequestMethod.POST)
-	public String insertComment(CommentVO vo, Criteria cri, RedirectAttributes rttr) throws Exception {
+	public String insertComment(CommentVO vo, RedirectAttributes rttr) throws Exception {
 		log.info("C : insertComment()  실행 ");
 		log.info("CommentVO 안에 들어 있는것? "+ vo);
 		cService.insertComment(vo);
@@ -203,5 +209,23 @@ public class BoardController {
 		return "redirect:/board/boardRead";
 	}
 	//12/05 댓글 작성 ###########################################################
+	
+	
+	// 댓글 수정 12/07 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	//댓글 수정
+			@RequestMapping(value="/updateReply", method = RequestMethod.POST)
+			public String updateReply(@RequestParam("reply_num") int reply_num, @RequestParam("board_num") int board_num, CommentVO vo, RedirectAttributes rttr) throws Exception{
+				//전달 정보 저장
+				log.info(reply_num + "@@@@@@@@@@@" + board_num+"@@@@@@@@@@@@@@@@@@@");
+				//int page = (Integer.parseInt(request.getParameter("page")));
+				//서비스 - 댓글수정
+				cService.commentUpdate(vo);
+				
+				log.info("댓글 수정 완료");
+				
+				return "redirect:/board/boardRead?board_num="+board_num;
+			}
+	
+	// 댓글 수정 12/07 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	
 }

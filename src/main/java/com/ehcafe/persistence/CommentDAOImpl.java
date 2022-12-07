@@ -40,6 +40,13 @@ public class CommentDAOImpl implements CommentDAO {
 		sqlSession.insert(NAMESPACE+".insertComment", vo);
 		
 	}
+
+
+	// 댓글 수정
+	@Override
+	public Integer commentUpdate(CommentVO vo) throws Exception {
+		return sqlSession.update(NAMESPACE+".commentUpdate", vo);
+	}
 	
 	
 	
