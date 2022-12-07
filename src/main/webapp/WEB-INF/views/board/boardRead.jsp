@@ -13,7 +13,7 @@
 
 
 function updateReplyFun(board_num,reply_num,comment,user_id){
-	alert("함수실행 "+ board_num+",,"+reply_num+",,"+comment+",,"+user_id);
+	//alert("함수실행 "+ board_num+",,"+reply_num+",,"+comment+",,"+user_id);
 		
 		 var commentsView = "";
 		// var buttonView = "";
@@ -42,16 +42,32 @@ function updateReplyFun(board_num,reply_num,comment,user_id){
 	$('#message'+reply_num).focus();
 }
 
+
+function deleteReply(reply_num){
+	var fr2 = $('#boardReply'+reply_num);
+	
+	//fr 속성 바꾸기 action, method
+	fr2.attr("action", "/board/deleteReply");
+	fr2.attr("method", "post");
+	fr2.submit();
+}
+
+// 댓글 미입력시 제어 
 $(document).ready(function(){
-	// 카테고리 제어
-	$('#insertComment').submit(function(){
+	$('.insertComment').submit(function(){
 		if($('#comment').val()==""){
 			alert("내용을 입력하세요.");
-			$('#category').focus();
 			return false;
 		}
 	});
 });
+
+
+
+
+
+
+
 </script>
 
 	
@@ -75,7 +91,9 @@ $(document).ready(function(){
 <div>
 	<ol>
 		<c:forEach items="${commentList }" var="commentList">
-			<li>
+			<form role="form" method="post" id="boardReply${commentList.reply_num }">
+			<input type="hidden" name="board_num" value="${vo.board_num }"> 
+			<input type="hidden" name="reply_num" value="${commentList.reply_num }">
 				<div class="comment-wrapper " id="edit_div${commentList.reply_num }">	
 				<p>
 				작성자 : ${commentList.user_id }<br>
@@ -83,7 +101,6 @@ $(document).ready(function(){
 				</p>
 				<p>${commentList.comment }</p>
 				</div>
-			</li>
 			
 			<div class="comment_control">
 				<c:if test="${loginVO.user_id == commentList.user_id }">
@@ -94,7 +111,7 @@ $(document).ready(function(){
 						onclick="deleteReply(${commentList.reply_num })">삭제</a>
 				</c:if>
 			</div>
-			
+			</form>
 		</c:forEach>
 	</ol>
 </div>
@@ -105,7 +122,7 @@ $(document).ready(function(){
 <!-- 게시글 댓글 출력 및 수정하기, 삭제하기-->
 
 <!-- 게시글 댓글 작성 -->
-<form id="insertComment" action="/board/insertComment" method="post" >
+<form class="insertComment" action="/board/insertComment" method="post" >
 	<input type="hidden" name="board_num" value="${vo.board_num }">
 	
 	<div>

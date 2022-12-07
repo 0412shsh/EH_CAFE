@@ -213,19 +213,32 @@ public class BoardController {
 	
 	// 댓글 수정 12/07 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	//댓글 수정
-			@RequestMapping(value="/updateReply", method = RequestMethod.POST)
-			public String updateReply(@RequestParam("reply_num") int reply_num, @RequestParam("board_num") int board_num, CommentVO vo, RedirectAttributes rttr) throws Exception{
-				//전달 정보 저장
-				log.info(reply_num + "@@@@@@@@@@@" + board_num+"@@@@@@@@@@@@@@@@@@@");
-				//int page = (Integer.parseInt(request.getParameter("page")));
-				//서비스 - 댓글수정
-				cService.commentUpdate(vo);
-				
-				log.info("댓글 수정 완료");
-				
-				return "redirect:/board/boardRead?board_num="+board_num;
-			}
+	@RequestMapping(value="/updateReply", method = RequestMethod.POST)
+	public String updateReply(@RequestParam("reply_num") int reply_num, @RequestParam("board_num") int board_num, CommentVO vo, RedirectAttributes rttr) throws Exception{
+		//전달 정보 저장
+		log.info(reply_num + "@@@@@@@@@@@" + board_num+"@@@@@@@@@@@@@@@@@@@");
+		//int page = (Integer.parseInt(request.getParameter("page")));
+		//서비스 - 댓글수정
+		cService.commentUpdate(vo);
+			
+		log.info("댓글 수정 완료");
+			
+		return "redirect:/board/boardRead?board_num="+board_num;
+	}
 	
 	// 댓글 수정 12/07 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+			
+	// 댓글 삭제 12/07 =============================================================
+	@RequestMapping(value="/deleteReply", method = RequestMethod.POST)
+	public String deleteReply(@RequestParam("reply_num") int reply_num, @RequestParam("board_num") int board_num, RedirectAttributes rttr) throws Exception{
+		log.info("댓글 삭제 실행!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		// 전달 정보 저장
+		log.info(reply_num+"##########"+board_num);
+		// 서비스 - 글 삭제
+		cService.deleteReply(reply_num);
+		return "redirect:/board/boardRead?board_num="+board_num;
+	}
+			
+	// 댓글 삭제 12/07 =============================================================
 	
 }

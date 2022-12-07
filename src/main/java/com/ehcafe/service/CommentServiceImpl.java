@@ -33,6 +33,13 @@ public class CommentServiceImpl implements CommentService{
 	public Integer commentUpdate(CommentVO vo) throws Exception {
 		return dao.commentUpdate(vo);
 	}
+
+	
+	// 댓글 삭제
+	@Override
+	public Integer deleteReply(Integer reply_num) throws Exception {
+		return dao.deleteReply(reply_num);
+	}
 	
 	
 

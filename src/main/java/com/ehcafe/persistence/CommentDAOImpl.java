@@ -47,6 +47,13 @@ public class CommentDAOImpl implements CommentDAO {
 	public Integer commentUpdate(CommentVO vo) throws Exception {
 		return sqlSession.update(NAMESPACE+".commentUpdate", vo);
 	}
+
+
+	// 댓글 삭제
+	@Override
+	public Integer deleteReply(Integer reply_num) throws Exception {
+		return sqlSession.delete(NAMESPACE+".deleteReply", reply_num);
+	}
 	
 	
 	

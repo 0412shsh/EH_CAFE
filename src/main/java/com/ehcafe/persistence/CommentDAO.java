@@ -17,5 +17,6 @@ public interface CommentDAO {
 	// 댓글 수정
 	 public Integer commentUpdate(CommentVO vo) throws Exception;
 	
-	
+	// 댓글 삭제
+	 public Integer deleteReply(Integer reply_num) throws Exception;
 }
