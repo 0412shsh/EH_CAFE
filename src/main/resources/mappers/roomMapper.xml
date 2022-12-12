@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.ehcafe.mappers.RoomMapper">
+
+<!-- 	상품 등록 -->
+	<insert id="insert">
+		insert into eh_room(room_name,detail,price)
+		values(#{room_name},#{detail},#{price})	
+	</insert>
+	
+<!-- 	상품 목록 조회 -->
+	<select id="list" resultType="com.ehcafe.domain.RoomVO">
+		select *
+		from eh_room
+		order by room_num desc
+	</select>
+	
+<!-- 	상품 상세 조회 -->
+	<select id="read" resultType="com.ehcafe.domain.RoomVO">
+		select *
+		from eh_room 
+		where room_num =#{room_num}
+	</select>
+
+<!-- 옵션 룸 조회 -->
+<select id="listAll" resultType="com.ehcafe.domain.RoomVO">
+		select distinct *
+		from eh_room
+		order by room_num desc
+	</select>
+
+</mapper>
